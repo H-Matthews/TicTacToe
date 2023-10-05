@@ -29,7 +29,7 @@ void GameController::mainGameLoop()
 {
 	m_board.printBoard();
 
-	while (!(this->m_gameOver))
+	while (!(m_gameOver))
 	{
 		m_currentPlayer = m_currentPlayer->switchPlayer(m_currentPlayer, m_p1, m_p2);
 		m_currentPlayer->setPlayerMoveSelection();

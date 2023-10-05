@@ -8,7 +8,7 @@ void GameBoard::initializeBoard()
 	// ASCII Codes 49 - 57 is equal to characters 1 - 9
 	for (int i = 49; i < 58; i++)
 	{
-		this->m_boardStructure[counter++] = i;
+		m_boardStructure[counter++] = i;
 	}
 }
 
@@ -49,11 +49,11 @@ bool GameBoard::markBoard(Player* p)
 {
 	bool successfulMark = false;
 
-	for (int i = 0; i < this->m_boardLength; i++)
+	for (int i = 0; i < m_boardLength; i++)
 	{
-		if (this->m_boardStructure[i] == p->getPlayerMoveSelection())
+		if (m_boardStructure[i] == p->getPlayerMoveSelection())
 		{
-			this->m_boardStructure[i] = p->getPlayerMark();
+			m_boardStructure[i] = p->getPlayerMark();
 			successfulMark = true;
 		}
 	}

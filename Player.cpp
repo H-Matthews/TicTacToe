@@ -38,8 +38,8 @@ char Player::getPlayerMoveSelection()
 
 void Player::setPlayerMoveSelection()
 {
-	std::cout << this->m_fullName << "(" << this->m_playerTypeChar << ")" << " enter move selection: ";
-	std::cin >> this->m_playerMoveSelection;
+	std::cout << m_fullName << "(" << m_playerTypeChar << ")" << " enter move selection: ";
+	std::cin >> m_playerMoveSelection;
 }
 
 void Player::setPlayerMarkChar(PlayerType type)
@@ -47,9 +47,9 @@ void Player::setPlayerMarkChar(PlayerType type)
 	// ASCII Code X ---> 88
 	// ASCII Code O ---> 79
 	if (m_playerType == PlayerType::X)
-		this->m_playerTypeChar = 88;
+		m_playerTypeChar = 88;
 	else
-		this->m_playerTypeChar = 79;
+		m_playerTypeChar = 79;
 }
 
 std::string Player::getFullName()
