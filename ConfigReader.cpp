@@ -1,6 +1,15 @@
 #include "ConfigReader.h"
 #include <iostream>
 
+ConfigReader* ConfigReader::m_configReaderInstance;
+
+ConfigReader* ConfigReader::getInstance()
+{
+	if (m_configReaderInstance == NULL)
+		m_configReaderInstance = new ConfigReader();
+
+	return m_configReaderInstance;
+}
 
 ConfigReader::ConfigReader()
 {

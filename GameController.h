@@ -6,7 +6,7 @@
 class GameController
 {
 private:
-	ConfigReader m_reader;
+	ConfigReader* m_reader;
 	GameBoard m_board;
 	Player m_p1;
 	Player m_p2;
