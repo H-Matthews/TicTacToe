@@ -2,6 +2,7 @@
 #include <iostream>
 
 
+// Define Singleton Instance as NULL
 ConfigReader* ConfigReader::m_configReaderInstance = NULL;
 
 ConfigReader* ConfigReader::getInstance()
@@ -15,8 +16,6 @@ ConfigReader* ConfigReader::getInstance()
 
 ConfigReader::ConfigReader()
 {
-	std::cout << "Creating Object " << std::endl;
-
 	m_buffer = "";
 	m_fileName = "";
 	m_errorCode = "";

@@ -9,10 +9,9 @@
 
 int main()
 {
-	// TODO: GameController should be created with a config reader param to increase flexibility
-	//		 We will have a config.ini that will contain the names of the players playing the game.
-	//       We could also provide different settings for the game. This is useful because it doesnt 
-	//       need the code to be recompiled if we change player names.
+	// TODO: Game Controller now takes in a Filename to open using the new ConfigReader
+	//		 We need to improve the configReader algorithm and make it more modular.
+
 	GameController Controller = GameController("config.ini");
 
 	// Program Begin

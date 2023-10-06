@@ -1,6 +1,8 @@
 #include "GameController.h"
 #include <iostream>
 
+// Constructor does NOT use the new ConfigReader.... Set names here before compiling. Using the other constructor is recommended 
+// to prevent unnecessary builds
 GameController::GameController()
 {
 	// Initialize GameBoard
