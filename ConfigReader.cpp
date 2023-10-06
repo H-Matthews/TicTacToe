@@ -1,18 +1,22 @@
 #include "ConfigReader.h"
 #include <iostream>
 
-ConfigReader* ConfigReader::m_configReaderInstance;
+
+ConfigReader* ConfigReader::m_configReaderInstance = NULL;
 
 ConfigReader* ConfigReader::getInstance()
 {
 	if (m_configReaderInstance == NULL)
 		m_configReaderInstance = new ConfigReader();
+		
 
 	return m_configReaderInstance;
 }
 
 ConfigReader::ConfigReader()
 {
+	std::cout << "Creating Object " << std::endl;
+
 	m_buffer = "";
 	m_fileName = "";
 	m_errorCode = "";
