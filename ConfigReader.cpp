@@ -18,33 +18,38 @@ ConfigReader::ConfigReader()
 {
 	m_buffer = "";
 	m_fileName = "";
-	m_errorCode = "";
+	m_errorCode = ErrorCode::NO_ERROR;
 
 	m_isInitialized = false;
 
 	playerCounter = 1;
 }
 
-std::string ConfigReader::initialize(std::string fileName)
+void ConfigReader::initialize(std::string fileName)
 {
-	m_errorCode = "ERROR_CODE:NO_ERROR";
+	m_errorCode = ErrorCode::ALREADY_INITIALIZED;
 
-	// Set member incase we need to reference file name again throughout program
-	m_fileName = fileName;
-
-	m_fileHandle.open(m_fileName, std::ios::in);
-
-	// Check to see if file opens
-	if (!m_fileHandle.is_open())
-		m_errorCode = "ERROR_CODE:INVALID_FILE_NAME";
-
-	if (m_errorCode == "ERROR_CODE:NO_ERROR")
+	if (!m_isInitialized)
 	{
-		parseFile();
-		m_isInitialized = true;
+		m_errorCode = ErrorCode::NO_ERROR;
+
+		// Set member incase we need to reference file name again throughout program
+		m_fileName = fileName;
+
+		m_fileHandle.open(m_fileName, std::ios::in);
+
+		// Check to see if file opens
+		if (!m_fileHandle.is_open())
+			m_errorCode = ErrorCode::INVALID_FILE_NAME;
+
+		if (m_errorCode == ErrorCode::NO_ERROR)
+		{
+			parseFile();
+			m_isInitialized = true;
+		}
 	}
 
-	return m_errorCode;
+	return;
 }
 
 void ConfigReader::parseFile()

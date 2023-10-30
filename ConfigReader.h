@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <fstream>
+#include "Types.h"
 
 constexpr int PLAYER_MAX = 2;
 
@@ -16,7 +17,7 @@ private:
 	std::fstream m_fileHandle;
 	std::string m_fileName;
 
-	std::string m_errorCode;
+	ErrorCode m_errorCode;
 
 	std::string m_players[PLAYER_MAX];
 	int playerCounter;
@@ -30,7 +31,7 @@ public:
 
 	static ConfigReader* getInstance();
 
-	std::string initialize(std::string fileName);
+	void initialize(std::string fileName);
 
 	void parseFile();
 

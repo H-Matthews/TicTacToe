@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "PlayerType.h"
+#include "Types.h"
 
 class Player
 {
