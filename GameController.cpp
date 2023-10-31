@@ -74,7 +74,9 @@ void GameController::mainGameLoop()
 			m_validInput = m_board.markBoard(m_currentPlayer);
 		}
 
-		m_gameOver = m_board.checkGameOver(m_currentPlayer);
+		if(m_board.getNumberOfMoves() > 4)
+			m_gameOver = m_board.checkGameOver(m_currentPlayer);
+
 		m_board.printBoard();
 	}
 }

@@ -1,6 +1,12 @@
 #include "GameBoard.h"
 #include <iostream>
 
+
+GameBoard::GameBoard()
+{
+	numberOfMoves = 0;
+}
+
 void GameBoard::initializeBoard()
 {
 	int counter = 0;
@@ -17,26 +23,51 @@ bool GameBoard::checkGameOver(Player* p)
 	// Assume there is no win
 	bool win = false;
 
-	// Next 3 covers Horizontal win condition
-	if (m_boardStructure[0] == p->getPlayerMark() && m_boardStructure[1] == p->getPlayerMark() && m_boardStructure[2] == p->getPlayerMark())
-		win = true;
-	else if (m_boardStructure[3] == p->getPlayerMark() && m_boardStructure[4] == p->getPlayerMark() && m_boardStructure[5] == p->getPlayerMark())
-		win = true;
-	else if (m_boardStructure[6] == p->getPlayerMark() && m_boardStructure[7] == p->getPlayerMark() && m_boardStructure[8] == p->getPlayerMark())
-		win = true;
-	// Next 3 covers Vertical win condition
-	else if (m_boardStructure[0] == p->getPlayerMark() && m_boardStructure[3] == p->getPlayerMark() && m_boardStructure[6] == p->getPlayerMark())
-		win = true;
-	else if (m_boardStructure[1] == p->getPlayerMark() && m_boardStructure[4] == p->getPlayerMark() && m_boardStructure[7] == p->getPlayerMark())
-		win = true;
-	else if (m_boardStructure[2] == p->getPlayerMark() && m_boardStructure[5] == p->getPlayerMark() && m_boardStructure[8] == p->getPlayerMark())
-		win = true;
-	// Next 2 covers diagonal win condition
-	else if (m_boardStructure[0] == p->getPlayerMark() && m_boardStructure[4] == p->getPlayerMark() && m_boardStructure[8] == p->getPlayerMark())
-		win = true;
-	else if (m_boardStructure[2] == p->getPlayerMark() && m_boardStructure[4] == p->getPlayerMark() && m_boardStructure[6] == p->getPlayerMark())
-		win = true;
+	auto iterator = 0;
+	auto j = 0;
 
+	// Check rows
+	while (j++ < 3)
+	{
+		if (m_boardStructure[iterator] == p->getPlayerMark() && m_boardStructure[iterator + 1] == p->getPlayerMark() && m_boardStructure[iterator + 2] == p->getPlayerMark())
+		{
+			win = true;
+			break;
+		}
+		iterator = iterator + 3;
+	}
+
+	j = 0;
+	iterator = 0;
+		
+	// Check Columns
+	if (!win)
+	{
+			
+		while (j++ < 3)
+		{
+			if (m_boardStructure[iterator] == p->getPlayerMark() && m_boardStructure[iterator + 3] == p->getPlayerMark() && m_boardStructure[iterator + 6] == p->getPlayerMark())
+			{
+				win = true;
+				break;
+			}
+
+			iterator++;
+		}
+	}
+
+	// Check Diagonals
+	if (!win)
+	{
+		if (m_boardStructure[0] == p->getPlayerMark() && m_boardStructure[4] == p->getPlayerMark() && m_boardStructure[8] == p->getPlayerMark())
+			win = true;
+		else if (m_boardStructure[2] == p->getPlayerMark() && m_boardStructure[4] == p->getPlayerMark() && m_boardStructure[6] == p->getPlayerMark())
+			win = true;
+	}
+
+	
+
+	// If there is a win print out the winners name
 	if (win == true)
 		std::cout << p->getFullName() << " has won! " << std::endl;
 	else
@@ -55,6 +86,7 @@ bool GameBoard::markBoard(Player* p)
 		{
 			m_boardStructure[i] = p->getPlayerMark();
 			successfulMark = true;
+			numberOfMoves++;
 		}
 	}
 
@@ -73,4 +105,9 @@ void GameBoard::printBoard()
 			std::cout << std::endl;
 		}
 	}
+}
+
+int GameBoard::getNumberOfMoves()
+{
+	return numberOfMoves;
 }
