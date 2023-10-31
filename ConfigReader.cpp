@@ -55,9 +55,8 @@ void ConfigReader::initialize(std::string fileName)
 void ConfigReader::parseFile()
 {
 
-	while (m_fileHandle)
+	while (std::getline(m_fileHandle, m_buffer))
 	{
-		std::getline(m_fileHandle, m_buffer);
 
 		// Only executes when we are looking at sectionHeaders
 		if (m_buffer[0] == '[')
@@ -82,6 +81,8 @@ void ConfigReader::parseFile()
 				m_players[1] = m_buffer;
 		}
 	}
+
+	m_fileHandle.close();
 }
 
 bool ConfigReader::isInitialized()
