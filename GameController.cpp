@@ -69,12 +69,17 @@ void GameController::mainGameLoop()
 		// Inner Loop to Check for compliant Player input
 		while (!(m_validInput))
 		{
+			system("Clear");
+			m_board.printBoard();
 			std::cout << "INPUT ERROR: Please enter a valid location on the board! " << std::endl;
 			m_currentPlayer->setPlayerMoveSelection();
 			m_validInput = m_board.markBoard(m_currentPlayer);
 		}
 
-		m_gameOver = m_board.checkGameOver(m_currentPlayer);
+		// Only check for a winner after 4 moves
+		if(m_board.getNumberOfMoves() > 4)
+			m_gameOver = m_board.checkGameOver(m_currentPlayer);
+
 		m_board.printBoard();
 	}
 }
