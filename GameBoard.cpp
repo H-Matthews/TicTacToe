@@ -65,13 +65,18 @@ bool GameBoard::checkGameOver(Player* p)
 			win = true;
 	}
 
-	
-
 	// If there is a win print out the winners name
 	if (win == true)
 		std::cout << p->getFullName() << " has won! " << std::endl;
 	else
 		system("Clear");
+
+	// Check to see if its a tie game
+	if(numberOfMoves == MAX_TILES)
+	{
+		std::cout << "TIE GAME " << std::endl;
+		win = true;
+	}
 
 	return win;
 }
@@ -84,7 +89,7 @@ bool GameBoard::markBoard(Player* p)
 	{
 		if (m_boardStructure[i] == p->getPlayerMoveSelection())
 		{
-			m_boardStructure[i] = p->getPlayerMark();
+			m_boardStructure[i] = p->getPlayerMark(); // This marks the board
 			successfulMark = true;
 			numberOfMoves++;
 		}

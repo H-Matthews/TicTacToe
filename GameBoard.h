@@ -1,6 +1,8 @@
 #pragma once
 #include "Player.h"
 
+#define MAX_TILES 9
+
 class GameBoard
 {
 private:
