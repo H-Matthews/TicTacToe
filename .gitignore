@@ -1,6 +1,7 @@
 /x64
 *.vcxproj*
 *.o
+*.vscode
 
 /install/*
 /build/*
