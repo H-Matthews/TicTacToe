@@ -1,16 +1,8 @@
 #!/bin/bash
 
-if test -d ../build; then
-    rm -dr ../build
-fi
+cmake -E make_directory ../build
+cd ../build 
 
-if test -d ../install; then
-    rm -dr ../install
-fi
-
-mkdir ../build
-cd ../build
-
-cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ../
-cmake --build .
+cmake -DCMAKE_BUILD_TYPE=Debug ../
+cmake --build . --target Debug --config Debug
 cmake --install . --prefix ../install
