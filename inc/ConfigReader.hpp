@@ -3,7 +3,7 @@
 
 #include <string>
 #include <fstream>
-#include "Types.h"
+#include "Types.hpp"
 
 constexpr int PLAYER_MAX = 2;
 

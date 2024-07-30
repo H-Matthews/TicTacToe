@@ -1,8 +1,8 @@
 // User Defined Includes
-#include "GameController.h"
-#include "GameBoard.h"
-#include "Player.h"
-#include "ConfigReader.h"
+#include "GameController.hpp"
+#include "GameBoard.hpp"
+#include "Player.hpp"
+#include "ConfigReader.hpp"
 
 // Standard Includes
 #include <iostream>

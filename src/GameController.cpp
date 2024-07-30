@@ -1,4 +1,4 @@
-#include "GameController.h"
+#include "GameController.hpp"
 #include <iostream>
 
 // Constructor does NOT use the new ConfigReader.... Set names here before compiling. Using the other constructor is recommended 

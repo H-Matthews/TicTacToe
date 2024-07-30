@@ -1,7 +1,7 @@
 #ifndef GAME_BOARD_H
 #define GAME_BOARD_H
 
-#include "Player.h"
+#include "Player.hpp"
 
 #define MAX_TILES 9
 

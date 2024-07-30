@@ -2,7 +2,7 @@
 #define PLAYER_H
 
 #include <string>
-#include "Types.h"
+#include "Types.hpp"
 
 class Player
 {
