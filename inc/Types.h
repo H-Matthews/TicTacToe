@@ -1,4 +1,6 @@
-#pragma once
+#ifndef TYPES_H
+#define TYPES_H
+
 enum class PlayerType
 {
 	O,
@@ -12,3 +14,5 @@ enum class ErrorCode
 	ALREADY_INITIALIZED,
 	INVALID_FILE_NAME,
 };
+
+#endif

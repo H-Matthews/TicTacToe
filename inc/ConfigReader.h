@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CONFIG_READER_H
+#define CONFIG_READER_H
+
 #include <string>
 #include <fstream>
 #include "Types.h"
@@ -40,3 +42,5 @@ public:
 	std::string* getPlayers();
 
 };
+
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <string>
 #include "Types.h"
 
@@ -27,3 +29,4 @@ public:
 
 
 };
+#endif

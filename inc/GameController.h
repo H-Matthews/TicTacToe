@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GAME_CONTROLLER_H
+#define GAME_CONTROLLER_H
+
 #include "Player.h"
 #include "GameBoard.h"
 #include "ConfigReader.h"
@@ -24,3 +26,4 @@ public:
 	void mainGameLoop();
 
 };
+#endif
