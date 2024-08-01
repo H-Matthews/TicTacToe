@@ -22,7 +22,7 @@ private:
 public:
 	GameController();
 
-	GameController(std::string iniFile);
+	GameController(Player p1, Player p2, GameBoard board);
 
 	void mainGameLoop();
 

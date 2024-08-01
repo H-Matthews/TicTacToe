@@ -20,27 +20,15 @@ GameController::GameController()
 };
 
 // Uses a ConfigReader to set the settings
-GameController::GameController(std::string iniFile)
+GameController::GameController(Player p1, Player p2, GameBoard board)
 {
 	// Get ConfigReader Instance
 	m_reader = m_reader->getInstance();
 
-	// Initialize ConfigReader
-	m_reader->initialize(iniFile);
-
-	if (!m_reader->isInitialized())
-	{
-		std::cout << "[ERROR] ConfigReader could not be initialized. Exiting Program. " << std::endl;
-		exit(0);
-	}
-
-	// Initialize Players
-	std::string* players = m_reader->getPlayers();
-	m_p1 = Player(players[0], PlayerType::X);
-	m_p2 = Player(players[1], PlayerType::O);
-
-	// Initialize GameBoard
-	m_board.initializeBoard();
+	// Set Instances
+	m_p1 = p1;
+	m_p2 = p2;
+	m_board = board;
 
 	// Set other vars as needed
 	m_currentPlayer = &m_p2;
