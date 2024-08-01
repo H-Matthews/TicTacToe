@@ -3,7 +3,8 @@
 
 #include "Player.hpp"
 #include "GameBoard.hpp"
-#include "ConfigReader.hpp"
+
+class ConfigReader;
 
 class GameController
 {
