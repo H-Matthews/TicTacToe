@@ -17,8 +17,8 @@ public:
 	void initializeBoard();
 	void printBoard();
 	bool markBoard(Player* p);
-	bool checkGameOver(Player* p);
 
-	int getNumberOfMoves();
+	const int getNumberOfMoves() const;
+	const char* getBoardStructure() const;
 };
 #endif

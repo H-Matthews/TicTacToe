@@ -15,13 +15,12 @@ private:
 	Player m_p2;
 	Player* m_currentPlayer;
 
-	bool m_gameOver;
+	enum GameState m_gameState;
 	bool m_validInput;
 
-
+	enum GameState checkGameState();
 public:
 	GameController();
-
 	GameController(Player p1, Player p2, GameBoard board);
 
 	void mainGameLoop();

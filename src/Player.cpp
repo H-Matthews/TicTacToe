@@ -31,12 +31,12 @@ Player* Player::switchPlayer(Player* currentPlayer, Player& p1, Player& p2)
 	return currentPlayer;
 }
 
-char Player::getPlayerMoveSelection()
+char Player::getPlayerMove()
 {
 	return this->m_playerMoveSelection;
 }
 
-void Player::setPlayerMoveSelection()
+void Player::getPlayerInput()
 {
 	std::cout << m_fullName << "(" << m_playerTypeChar << ")" << " enter move selection: ";
 	std::cin >> m_playerMoveSelection;

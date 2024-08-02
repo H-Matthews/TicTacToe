@@ -23,8 +23,8 @@ public:
 	std::string getFullName();
 	char getPlayerMark();
 
-	void setPlayerMoveSelection();
-	char getPlayerMoveSelection();
+	void getPlayerInput();
+	char getPlayerMove();
 	Player* switchPlayer(Player* currentPlayer, Player& p1, Player& p2);
 
 

@@ -18,76 +18,16 @@ void GameBoard::initializeBoard()
 	}
 }
 
-bool GameBoard::checkGameOver(Player* p)
-{
-	// Assume there is no win
-	bool win = false;
-
-	auto iterator = 0;
-	auto j = 0;
-
-	// Check rows
-	while (j++ < 3)
-	{
-		if (m_boardStructure[iterator] == p->getPlayerMark() && m_boardStructure[iterator + 1] == p->getPlayerMark() && m_boardStructure[iterator + 2] == p->getPlayerMark())
-		{
-			win = true;
-			break;
-		}
-		iterator = iterator + 3;
-	}
-
-	j = 0;
-	iterator = 0;
-		
-	// Check Columns
-	if (!win)
-	{
-			
-		while (j++ < 3)
-		{
-			if (m_boardStructure[iterator] == p->getPlayerMark() && m_boardStructure[iterator + 3] == p->getPlayerMark() && m_boardStructure[iterator + 6] == p->getPlayerMark())
-			{
-				win = true;
-				break;
-			}
-
-			iterator++;
-		}
-	}
-
-	// Check Diagonals
-	if (!win)
-	{
-		if (m_boardStructure[0] == p->getPlayerMark() && m_boardStructure[4] == p->getPlayerMark() && m_boardStructure[8] == p->getPlayerMark())
-			win = true;
-		else if (m_boardStructure[2] == p->getPlayerMark() && m_boardStructure[4] == p->getPlayerMark() && m_boardStructure[6] == p->getPlayerMark())
-			win = true;
-	}
-
-	// If there is a win print out the winners name
-	if (win == true)
-		std::cout << p->getFullName() << " has won! " << std::endl;
-	else
-		system("Clear");
-
-	// Check to see if its a tie game
-	if(numberOfMoves == MAX_TILES)
-	{
-		std::cout << "TIE GAME " << std::endl;
-		win = true;
-	}
-
-	return win;
-}
-
+// markBoard() will check to see if we have a valid mark. IF so, then it will mark the board
+// Incorrect marks are denoted as any userInput that does not match the numbers 1 - 9 in the current board state 
+// Board cells will be changed to the corresponding ASCII code for 'X' or 'O'
 bool GameBoard::markBoard(Player* p)
 {
 	bool successfulMark = false;
 
 	for (int i = 0; i < m_boardLength; i++)
 	{
-		if (m_boardStructure[i] == p->getPlayerMoveSelection())
+		if (m_boardStructure[i] == p->getPlayerMove())
 		{
 			m_boardStructure[i] = p->getPlayerMark(); // This marks the board
 			successfulMark = true;
@@ -112,7 +52,12 @@ void GameBoard::printBoard()
 	}
 }
 
-int GameBoard::getNumberOfMoves()
+const int GameBoard::getNumberOfMoves() const
 {
 	return numberOfMoves;
+}
+
+const char* GameBoard::getBoardStructure() const
+{
+	return m_boardStructure;
 }

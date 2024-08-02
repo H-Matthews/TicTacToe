@@ -11,5 +11,6 @@ std::string getErrorState(const StatusCode status);
 
 GameController initializeObjects();
 
+void clearScreen();
 
 #endif

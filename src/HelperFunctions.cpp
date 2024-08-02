@@ -69,3 +69,8 @@ GameController initializeObjects()
 
     return controller;
 }
+
+void clearScreen()
+{
+    system("clear");
+}

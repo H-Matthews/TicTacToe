@@ -1,5 +1,7 @@
 #include "GameController.hpp"
 #include "ConfigReader.hpp"
+#include "HelperFunctions.hpp"
+
 #include <iostream>
 
 // Constructor does NOT use the new ConfigReader.... Set names here before compiling. Using the other constructor is recommended 
@@ -15,7 +17,7 @@ GameController::GameController()
 
 	// Set other vars as needed
 	m_currentPlayer = &m_p2;
-	m_gameOver = false;
+	m_gameState = GameState::RUNNING;
 	m_validInput = true;
 };
 
@@ -32,7 +34,7 @@ GameController::GameController(Player p1, Player p2, GameBoard board)
 
 	// Set other vars as needed
 	m_currentPlayer = &m_p2;
-	m_gameOver = false;
+	m_gameState = GameState::RUNNING;
 	m_validInput = true;
 }
 
@@ -42,33 +44,100 @@ GameController::GameController(Player p1, Player p2, GameBoard board)
 	2. Player selects a Square on the grid
 	3. Check to see if that square can be selected IF SO, Continue, IF NOT tell them to input again
 	4. Mark the square with player input
-	5. Check to see if the game was won by that specific player
+	5. Check to see the game state after every iteration
 	6. IF NOT print the board
 */
 void GameController::mainGameLoop()
 {
-	m_board.printBoard();
 
-	while (!(m_gameOver))
+	while ( m_gameState == GameState::RUNNING)
 	{
+		m_board.printBoard();
+
 		m_currentPlayer = m_currentPlayer->switchPlayer(m_currentPlayer, m_p1, m_p2);
-		m_currentPlayer->setPlayerMoveSelection();
+		m_currentPlayer->getPlayerInput();
 		m_validInput = m_board.markBoard(m_currentPlayer);
 
 		// Inner Loop to Check for compliant Player input
 		while (!(m_validInput))
 		{
-			system("Clear");
+			clearScreen();
 			m_board.printBoard();
 			std::cout << "INPUT ERROR: Please enter a valid location on the board! " << std::endl;
-			m_currentPlayer->setPlayerMoveSelection();
+			m_currentPlayer->getPlayerInput();
 			m_validInput = m_board.markBoard(m_currentPlayer);
 		}
-
-		// Only check for a winner after 4 moves
-		if(m_board.getNumberOfMoves() > 4)
-			m_gameOver = m_board.checkGameOver(m_currentPlayer);
-
-		m_board.printBoard();
+		
+		m_gameState = checkGameState();
+		clearScreen();
 	}
+
+	m_board.printBoard();
+	switch( m_gameState)
+	{
+		case GameState::WIN:
+			std::cout << m_currentPlayer->getFullName() << " has won! " << std::endl;
+			break;
+		case GameState::TIE:
+			std::cout << "Game was a tie between " << m_p1.getFullName() << " and " << m_p2.getFullName() << std::endl;
+			break;
+		default:
+			std::cout << "Game ended with an UNKNOWN Game State" << std::endl;
+	}
+}
+
+enum GameState GameController::checkGameState()
+{
+	// Assume there is no win
+	enum GameState state = GameState::RUNNING;
+
+	const char* gameBoard = m_board.getBoardStructure();
+	Player* p = m_currentPlayer;		// Just to make function call shorter
+
+	u_int8_t iterator = 0;
+	u_int8_t j = 0;
+
+	// Check rows
+	while (j++ < 3)
+	{
+		if (gameBoard[iterator] == p->getPlayerMark() && gameBoard[iterator + 1] == p->getPlayerMark() && gameBoard[iterator + 2] == p->getPlayerMark())
+		{
+			state = GameState::WIN;
+			break;
+		}
+		iterator = iterator + 3;
+	}
+
+	j = 0;
+	iterator = 0;
+		
+	// Check Columns
+	if (state == GameState::RUNNING)
+	{
+		while (j++ < 3)
+		{
+			if (gameBoard[iterator] == p->getPlayerMark() && gameBoard[iterator + 3] == p->getPlayerMark() && gameBoard[iterator + 6] == p->getPlayerMark())
+			{
+				state = GameState::WIN;
+				break;
+			}
+
+			iterator++;
+		}
+	}
+
+	// Check Diagonals
+	if (state == GameState::RUNNING)
+	{
+		if (gameBoard[0] == p->getPlayerMark() && gameBoard[4] == p->getPlayerMark() && gameBoard[8] == p->getPlayerMark())
+			state = GameState::WIN;
+		else if (gameBoard[2] == p->getPlayerMark() && gameBoard[4] == p->getPlayerMark() && gameBoard[6] == p->getPlayerMark())
+			state = GameState::WIN;
+	}
+
+	// Check to see if its a tie game
+	if(m_board.getNumberOfMoves() == MAX_TILES)
+		state = GameState::TIE;
+
+	return state;
 }
