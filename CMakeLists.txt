@@ -11,11 +11,13 @@ ${SRC_DIR}/GameBoard.cpp
 ${SRC_DIR}/GameController.cpp 
 ${SRC_DIR}/Player.cpp 
 ${SRC_DIR}/Main.cpp
+${SRC_DIR}/HelperFunctions.cpp
 ${INC_DIR}/ConfigReader.hpp
 ${INC_DIR}/GameBoard.hpp
 ${INC_DIR}/GameController.hpp 
 ${INC_DIR}/Player.hpp 
-${INC_DIR}/Types.hpp)
+${INC_DIR}/Types.hpp
+${INC_DIR}/HelperFunctions.hpp)
 
 # Define executable to be built
 add_executable(Debug ${SOURCES})

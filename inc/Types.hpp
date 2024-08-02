@@ -3,16 +3,23 @@
 
 enum class PlayerType
 {
-	O,
+	O = 0,
 	X,
 	DEFAULT
 };
 
-enum class ErrorCode
+enum class StatusCode
 {
-	NO_ERROR,
+	GO = 0,
 	ALREADY_INITIALIZED,
 	INVALID_FILE_NAME,
+};
+
+enum class GameState
+{
+	RUNNING = 0,
+	WIN,
+	TIE
 };
 
 #endif

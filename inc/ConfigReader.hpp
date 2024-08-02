@@ -14,11 +14,11 @@ public:
 
 	static ConfigReader* getInstance();
 
-	void initialize(std::string fileName);
+	void initialize(const std::string fileName, StatusCode& status);
 
-	bool isInitialized();
+	bool isInitialized() const;
 
-	std::string* getPlayers();
+	const std::string* getPlayers() const;
 
 private:
 	static ConfigReader* m_configReaderInstance;
@@ -28,8 +28,6 @@ private:
 
 	std::fstream m_fileHandle;
 	std::string m_fileName;
-
-	ErrorCode m_errorCode;
 
 	std::string m_players[PLAYER_MAX];
 	int playerCounter;
