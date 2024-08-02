@@ -9,8 +9,6 @@
 
 int main()
 {
-	// TODO: Game Controller now takes in a Filename to open using the new ConfigReader
-	//		 We need to improve the configReader algorithm and make it more modular.
 
 	ConfigReader* reader = reader->getInstance();
 	reader->initialize("config.ini");
@@ -21,7 +19,15 @@ int main()
 		exit(0);
 	}
 
-	std::string* players = reader->getPlayers();
+	std::string* players = nullptr;
+	players = reader->getPlayers();
+
+	if(players == nullptr)
+	{
+		std::cout << "[ERROR] Players did not populate correctly. Exiting Program. " << std::endl;
+		exit(0);
+	}
+
 	Player p1 = Player(players[0], PlayerType::X);
 	Player p2 = Player(players[1], PlayerType::O);
 
