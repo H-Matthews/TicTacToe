@@ -5,12 +5,13 @@
 #include "GameController.hpp"
 
 #include <string>
+namespace HelperFunctions
+{
+    std::string getErrorState(const StatusCode status);
 
-// Function Prototypes
-std::string getErrorState(const StatusCode status);
+    GameController initializeObjects();
 
-GameController initializeObjects();
-
-void clearScreen();
+    void clearScreen();
+};
 
 #endif

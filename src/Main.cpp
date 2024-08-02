@@ -8,7 +8,7 @@
 int main()
 {
 
-	GameController controller = initializeObjects();
+	GameController controller = HelperFunctions::initializeObjects();
 
 	// Program Begin
 	controller.mainGameLoop();

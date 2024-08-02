@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-std::string getErrorState(const StatusCode status)
+std::string HelperFunctions::getErrorState(const StatusCode status)
 {
 	std::string st = "";
 
@@ -27,7 +27,7 @@ std::string getErrorState(const StatusCode status)
 	return st;
 }
 
-GameController initializeObjects()
+GameController HelperFunctions::initializeObjects()
 {
     ConfigReader* reader = nullptr;
     reader = reader->getInstance();
@@ -44,7 +44,7 @@ GameController initializeObjects()
     if (status != StatusCode::GO)
 	{
 		std::cout << "[ERROR] - HelperFunctions::initializeObjects() - ConfigReader"
-        " could not be initialized.  [Error Code] - [" << getErrorState(status)
+        " could not be initialized.  [Error Code] - [" << HelperFunctions::getErrorState(status)
 		  << "] Exiting Program. " << std::endl;
 		exit(0);
 	}
@@ -70,7 +70,8 @@ GameController initializeObjects()
     return controller;
 }
 
-void clearScreen()
+// TODO: Make this functional on multiple OSs
+void HelperFunctions::clearScreen()
 {
     system("clear");
 }

@@ -61,7 +61,7 @@ void GameController::mainGameLoop()
 		// Inner Loop to Check for compliant Player input
 		while (!(m_validInput))
 		{
-			clearScreen();
+			HelperFunctions::clearScreen();
 			m_board.printBoard();
 			std::cout << "INPUT ERROR: Please enter a valid location on the board! " << std::endl;
 			m_currentPlayer->getPlayerInput();
@@ -69,7 +69,7 @@ void GameController::mainGameLoop()
 		}
 		
 		m_gameState = checkGameState();
-		clearScreen();
+		HelperFunctions::clearScreen();
 	}
 
 	m_board.printBoard();
