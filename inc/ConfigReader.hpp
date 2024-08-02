@@ -10,6 +10,16 @@ constexpr int PLAYER_MAX = 2;
 // Singleton Class Design
 class ConfigReader
 {
+public:
+
+	static ConfigReader* getInstance();
+
+	void initialize(std::string fileName);
+
+	bool isInitialized();
+
+	std::string* getPlayers();
+
 private:
 	static ConfigReader* m_configReaderInstance;
 	
@@ -26,20 +36,9 @@ private:
 
 	bool m_isInitialized;
 
+	void read();
 	ConfigReader();
 	~ConfigReader();
-
-public:
-
-	static ConfigReader* getInstance();
-
-	void initialize(std::string fileName);
-
-	void parseFile();
-
-	bool isInitialized();
-
-	std::string* getPlayers();
 
 };
 

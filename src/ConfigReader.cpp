@@ -5,15 +5,6 @@
 // Define Singleton Instance as NULL
 ConfigReader* ConfigReader::m_configReaderInstance = NULL;
 
-ConfigReader* ConfigReader::getInstance()
-{
-	if (m_configReaderInstance == NULL)
-		m_configReaderInstance = new ConfigReader();
-		
-
-	return m_configReaderInstance;
-}
-
 ConfigReader::ConfigReader()
 {
 	m_buffer = "";
@@ -23,6 +14,15 @@ ConfigReader::ConfigReader()
 	m_isInitialized = false;
 
 	playerCounter = 1;
+}
+
+ConfigReader* ConfigReader::getInstance()
+{
+	if (m_configReaderInstance == NULL)
+		m_configReaderInstance = new ConfigReader();
+		
+
+	return m_configReaderInstance;
 }
 
 void ConfigReader::initialize(std::string fileName)
@@ -44,7 +44,7 @@ void ConfigReader::initialize(std::string fileName)
 
 		if (m_errorCode == ErrorCode::NO_ERROR)
 		{
-			parseFile();
+			read();
 			m_isInitialized = true;
 		}
 	}
@@ -52,12 +52,10 @@ void ConfigReader::initialize(std::string fileName)
 	return;
 }
 
-void ConfigReader::parseFile()
+void ConfigReader::read()
 {
-
 	while (std::getline(m_fileHandle, m_buffer))
 	{
-
 		// Only executes when we are looking at sectionHeaders
 		if (m_buffer[0] == '[')
 		{
